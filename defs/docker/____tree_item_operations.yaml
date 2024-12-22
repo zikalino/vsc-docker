@@ -27,6 +27,9 @@
   name: Start
   cmd: docker container start ${id}
   refresh: self
+  when:
+    path: $.State
+    value: exited
 
 #
 # stop container
@@ -37,6 +40,9 @@
   name: Stop
   cmd: docker container stop ${id}
   refresh: self
+  when:
+    path: $.State
+    value: running
 
 #
 # pause container
@@ -47,6 +53,9 @@
   name: Pause
   cmd: docker container pause ${id}
   refresh: self
+  when:
+    path: $.State
+    value: running
 
 #
 # unpause container
@@ -57,6 +66,9 @@
   name: Unpause
   cmd: docker container unpause ${id}
   refresh: self
+  when:
+    path: $.State
+    value: paused
 
 #
 # restart container
