@@ -1,3 +1,9 @@
-- item-types: docker-images-xx
-  cmd: upctl server show ${id} -o json
+- item-types:
+    - docker-image
+  cmd: docker image inspect ${id} --format json
+  refresh: self
+
+- item-types:
+    - docker-container
+  cmd: docker container inspect ${id} --format json
   refresh: self
