@@ -10,11 +10,8 @@ form:
   - type: section
     title: Prerequisites
     subitems:
-      - $include: __go_install_step.yaml
-      - type: 'action-row'
-        name: Install UpCloud CLI
-        verify: upctl version
-        install: go install github.com/UpCloudLtd/upcloud-cli/v3/...@latest
+      - $include: __docker_install_step.yaml
+      - $include: __docker_start_step.yaml
 
 
 footer:
