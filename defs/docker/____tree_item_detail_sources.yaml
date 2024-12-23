@@ -7,3 +7,8 @@
     - docker-container
   cmd: docker container inspect ${id} --format json
   refresh: self
+
+- item-types:
+    - docker
+  cmd: docker info --format json
+  refresh: self

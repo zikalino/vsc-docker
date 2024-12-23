@@ -68,7 +68,7 @@ export function displayDockerExplorer(extensionContext : vscode.ExtensionContext
     }
   };
 
-  view.createPanel(formDefinition, "media/icon.webp");
+  view.createPanel(formDefinition, "media/icon.png");
 }
 
 

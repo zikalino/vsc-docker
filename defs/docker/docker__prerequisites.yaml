@@ -4,14 +4,9 @@ form:
   - type: section
     subitems:
       - type: link-row
-        text: Read Getting Started Guide to learn more details on registering and configuring your UpCloud account
-        link: https://zikalino.substack.com/p/getting-started-with-upcloud-using
+        text: Read more about the extension on SmarterCode's SubStack
+        link: https://zikalino.substack.com/p/reviving-docker-runner-vscode-extension
 
-  - type: section
-    title: Prerequisites
-    subitems:
-      - $include: __docker_install_step.yaml
-      - $include: __docker_start_step.yaml
 
 
 footer:

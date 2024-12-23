@@ -74,7 +74,7 @@ async function loadYamlView(yml: any, refresh_id: string|null, parameters: any =
     }
   }
 
-  view.createPanel(yml, "media/icon.webp");
+  view.createPanel(yml, "media/icon.png");
 
   view.MsgHandler = function (msg: any) {
     if (msg.command === 'ready') {
