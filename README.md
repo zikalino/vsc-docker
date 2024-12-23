@@ -6,3 +6,4 @@ It recently came to my attention that one of my extensions created 7 years ago i
 
 Here's a starting point!
 
+Read more here: https://zikalino.substack.com/p/reviving-docker-runner-vscode-extension
