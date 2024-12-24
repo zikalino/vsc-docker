@@ -4,13 +4,13 @@ form:
   - type: section
     subitems:
       - type: link-row
-        text: Read more about the extension on SmarterCode's SubStack
+        text: 'Docker Runner documentation is available here:'
         link: https://zikalino.substack.com/p/reviving-docker-runner-vscode-extension
       - type: link-row
         text: GitHub donations are very welcome!
         link: https://github.com/sponsors/zikalino
       - type: link-row
-        text: Subscribe to Cloud Commander Substack
+        text: Subscribe to SmarterCode Substack
         link: https://zikalino.substack.com
 
   - type: section
