@@ -20,7 +20,7 @@ export function displayDockerExplorer(extensionContext : vscode.ExtensionContext
     id: 'layout'
     };
 
-  view = new helpers.GenericWebView(extensionContext, "Cloud Commander", "Cloud Commander", vscode);
+  view = new helpers.GenericWebView(extensionContext, "Docker Runner", "Docker Runner", vscode);
 
   view.setVariable("vm_sizes", vm_sizes);
 
