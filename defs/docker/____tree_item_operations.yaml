@@ -1,13 +1,12 @@
 #
-# prune containers
+# docker run
 #
-- type: delete
+- type: terminal
   item-types:
-    - docker-container-list
-  name: Prune stopped containers
-  cmd: docker container prune
-  interactive: true
-  refresh: self
+    - docker-image
+  name: Create container from this image
+  cmd: docker run ${id}
+  refresh: parent
 
 #
 # delete image
@@ -20,6 +19,17 @@
   refresh: parent
 
 #
+# prune containers
+#
+- type: delete
+  item-types:
+    - docker-container-list
+  name: Prune stopped containers
+  cmd: docker container prune
+  interactive: true
+  refresh: self
+
+#
 # delete container
 #
 - type: delete
@@ -28,6 +38,7 @@
   name: Delete
   cmd: docker container remove ${id}
   refresh: parent
+
 
 #
 # start container
