@@ -1,4 +1,15 @@
 #
+# prune containers
+#
+- type: delete
+  item-types:
+    - docker-container-list
+  name: Prune stopped containers
+  cmd: docker container prune
+  interactive: true
+  refresh: self
+
+#
 # delete image
 #
 - type: delete
