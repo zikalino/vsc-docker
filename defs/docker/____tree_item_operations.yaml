@@ -1,4 +1,15 @@
 #
+# prune images
+#
+- type: delete
+  item-types:
+    - docker-image-list
+  name: Prune dangling images
+  cmd: docker image prune
+  interactive: true
+  refresh: self
+
+#
 # docker run
 #
 - type: terminal
