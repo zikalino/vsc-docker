@@ -49,7 +49,9 @@
   name: Attach to terminal
   cmd: docker attach ${id}
   terminal: c${namex}
-  interactive: true
+  # behavior could be: non-interactive, interactive, interactive-no-wait 
+  behavior: interactive-no-wait
+  # interactive: true
   refresh: none
 
 #
