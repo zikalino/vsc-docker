@@ -3,7 +3,7 @@
   platform: linux
   name: Install Docker
   verify: docker info
-  interactive: true
+  behavior: interactive
   install: sudo dockerd &
 
 - type: 'action-row'

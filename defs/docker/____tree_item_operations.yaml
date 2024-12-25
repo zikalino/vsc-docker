@@ -6,7 +6,7 @@
     - docker-image-list
   name: Prune dangling images
   cmd: docker image prune
-  interactive: true
+  behavior: interactive
   refresh: self
 
 #
@@ -20,7 +20,11 @@
   terminal: c${id}
   # behavior could be: non-interactive, interactive, interactive-no-wait 
   behavior: interactive-no-wait
-  # interactive: true
+  # we specify template as well, so the user will have 2 options
+  template:
+    name: docker/docker_run.yaml
+    parameters:
+      image: ${id}
   refresh: none
 
 #
@@ -41,7 +45,7 @@
     - docker-container-list
   name: Prune stopped containers
   cmd: docker container prune
-  interactive: true
+  behavior: interactive
   refresh: self
 
 #
@@ -55,7 +59,6 @@
   terminal: c${namex}
   # behavior could be: non-interactive, interactive, interactive-no-wait 
   behavior: interactive-no-wait
-  # interactive: true
   refresh: none
 
 #
