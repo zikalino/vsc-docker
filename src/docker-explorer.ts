@@ -5,6 +5,8 @@ import { displayMenu } from './extension';
 
 import vm_sizes from './vm_sizes.json' assert {type: 'json'};
 
+import { loadYamlView } from './extension';
+
 var view: helpers.GenericWebView|null = null;
 
 export function displayDockerExplorer(extensionContext : vscode.ExtensionContext) {
@@ -62,7 +64,16 @@ export function displayDockerExplorer(extensionContext : vscode.ExtensionContext
           view.runStepsInstallation();
         }
         return;
+      case 'action-template':
+        var template = msg['template'];
   
+        var parameters: any = ('parameters' in template) ? template['parameters'] : {};
+  
+        var loader = new helpers.DefinitionLoader(extensionContext.extensionPath, "defs/" + template['name']);
+        let yml = loader.getYaml();
+  
+        loadYamlView(yml, null, parameters);
+        break;
      default:
         console.log('XXX');
     }

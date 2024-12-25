@@ -61,7 +61,7 @@ export async function displayMenu(submenu: any) {
   }
 }
 
-async function loadYamlView(yml: any, refresh_id: string|null, parameters: any = null) {
+export async function loadYamlView(yml: any, refresh_id: string|null, parameters: any = null) {
 
   var tabTitle: string = ('title' in yml) ? yml['title'] : "Raw CLI";
 
