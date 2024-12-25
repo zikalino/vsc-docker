@@ -1,8 +1,10 @@
 - item-types:
     - docker-container
   fields:
+    namex:
+      path: $.[0].Name
     state:
-      path: "$.raw.State"
+      path: "$.State"
       map:
         "exited": stopped
         "PowerState/stopped": stopped

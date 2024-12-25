@@ -41,6 +41,18 @@
   refresh: self
 
 #
+# attach to container
+#
+- type: terminal
+  item-types:
+    - docker-container
+  name: Attach to terminal
+  cmd: docker attach ${id}
+  terminal: c${namex}
+  interactive: true
+  refresh: none
+
+#
 # delete container
 #
 - type: delete
