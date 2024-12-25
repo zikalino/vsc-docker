@@ -16,8 +16,12 @@
   item-types:
     - docker-image
   name: Create container from this image
-  cmd: docker run ${id}
-  refresh: parent
+  cmd: docker run -it ${id} 
+  terminal: c${id}
+  # behavior could be: non-interactive, interactive, interactive-no-wait 
+  behavior: interactive-no-wait
+  # interactive: true
+  refresh: none
 
 #
 # delete image
