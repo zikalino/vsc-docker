@@ -37,28 +37,6 @@
 
 
 #
-# push image
-#
-- type: load
-  item-types:
-    - docker-image
-  name: Push image to the repository
-  behavior: interactive
-  cmd: docker image push ${repo_tag}
-  refresh: none
-
-#
-# pull image
-#
-- type: load
-  item-types:
-    - docker-image
-  name: Pull newers version of the image from the repository
-  behavior: interactive
-  cmd: docker image pull ${repo_tag}
-  refresh: self
-
-#
 # docker run
 #
 - type: terminal
@@ -77,14 +55,26 @@
   refresh: none
 
 #
-# delete image
+# pull image
 #
-- type: delete
+- type: pull
   item-types:
     - docker-image
-  name: Delete
-  cmd: docker image remove ${id}
-  refresh: parent
+  name: Pull newers version of the image from the repository
+  behavior: interactive
+  cmd: docker image pull ${repo_tag}
+  refresh: self
+
+#
+# push image
+#
+- type: push
+  item-types:
+    - docker-image
+  name: Push image to the repository
+  behavior: interactive
+  cmd: docker image push ${repo_tag}
+  refresh: none
 
 #
 # save image
@@ -96,6 +86,16 @@
   behavior: interactive
   cmd: docker image save ${id} --output ${id}.tar
   refresh: none
+
+#
+# delete image
+#
+- type: delete
+  item-types:
+    - docker-image
+  name: Delete
+  cmd: docker image remove ${id}
+  refresh: parent
 
 #
 # prune containers
@@ -208,7 +208,7 @@
 #
 # docker exec
 #
-- type: terminal
+- type: run
   item-types:
     - docker-container
   name: Execute Command in Container
@@ -222,7 +222,7 @@
 #
 # docker commit
 #
-- type: terminal
+- type: commit
   item-types:
     - docker-container
   name: Create a new image from a container's changes

@@ -34,3 +34,4 @@ form:
         install: docker commit ${container_id} ${repository}:${tag}
         verify: echo running
         behavior: interactive
+        icon: codicon-check
