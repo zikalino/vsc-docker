@@ -221,3 +221,17 @@
     parameters:
       container_id: ${id}
   refresh: none
+
+#
+# docker commit
+#
+- type: terminal
+  item-types:
+    - docker-container
+  name: Create a new image from a container's changes
+  cmd: docker commit ${id}
+  template:
+    name: docker/docker_commit.yaml
+    parameters:
+      container_id: ${id}
+  refresh: none
