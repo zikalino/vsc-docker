@@ -144,3 +144,14 @@
   name: Restart
   cmd: docker container restart ${id}
   refresh: self
+
+#
+# export container
+#
+- type: save
+  item-types:
+    - docker-container
+  name: Export to tar file
+  behavior: interactive
+  cmd: docker container export ${id} --output ${id}.tar
+  refresh: none
