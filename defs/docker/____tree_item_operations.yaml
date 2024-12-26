@@ -76,7 +76,7 @@
   template:
     name: docker/docker_run.yaml
     parameters:
-      image: ${id}
+      image_id: ${id}
   refresh: none
 
 #

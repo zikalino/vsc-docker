@@ -3,6 +3,7 @@ id: root
 form:
   - type: section
     subitems:
-      - type: link-row
-        text: Read more about the extension on SmarterCode's SubStack
-        link: https://zikalino.substack.com/p/reviving-docker-runner-vscode-extension
+    - type: row
+      subitems:
+        - $include: docker/__docker_image_selector_field.yaml
+        - $include: docker/__docker_container_selector_field.yaml
