@@ -38,6 +38,17 @@
   refresh: parent
 
 #
+# save image
+#
+- type: save
+  item-types:
+    - docker-image
+  name: Save to tar file
+  behavior: interactive
+  cmd: docker image save ${id} --output ${id}.tar
+  refresh: none
+
+#
 # prune containers
 #
 - type: delete
