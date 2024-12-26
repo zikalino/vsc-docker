@@ -13,6 +13,7 @@ form:
       subitems:
         - $include: docker/__docker_container_selector_field.yaml
     - type: row
+      narrow: true
       subitems:
         - type: textfield
           name: Enter Command

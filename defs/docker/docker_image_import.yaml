@@ -10,6 +10,7 @@ form:
   - type: section
     subitems:
     - type: row
+      narrow: true
       subitems:
         - type: folder-selector
           name: Select .tar file

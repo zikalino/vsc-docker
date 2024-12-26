@@ -10,6 +10,7 @@ form:
   - type: section
     subitems:
     - type: row
+      narrow: true
       subitems:
         - type: folder-selector
           name: Select .tar file
@@ -25,6 +26,6 @@ form:
         name: Load
         consumes:
           - variable: filename
-        install: docker image load ${filename}
+        install: docker image load --input ${filename}
         verify: echo running
         behavior: interactive
