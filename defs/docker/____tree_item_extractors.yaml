@@ -8,3 +8,9 @@
       map:
         "exited": stopped
         "PowerState/stopped": stopped
+
+- item-types:
+    - docker-image
+  fields:
+    repo_tag:
+      path: $.[0].RepoTags[0]

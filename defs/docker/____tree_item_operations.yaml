@@ -10,6 +10,58 @@
   refresh: self
 
 #
+# load image
+#
+#- type: load
+#  item-types:
+#    - docker-image-list
+#  name: Load image from tar file
+#  behavior: interactive
+#  additional-input:
+#    type: filename
+#    pattern: *.tar
+#    variable: filename
+#  cmd: docker image load --input ${filename}
+#  refresh: self
+
+#
+# import image
+#
+#- type: load
+#  item-types:
+#    - docker-image-list
+#  name: Import image from tar file
+#  behavior: interactive
+#  additional-input:
+#    type: filename
+#    pattern: *.tar
+#    variable: filename
+#  cmd: docker image import --input ${filename}
+#  refresh: self
+
+#
+# push image
+#
+- type: load
+  item-types:
+    - docker-image
+  name: Push image to the repository
+  behavior: interactive
+  cmd: docker image push ${repo_tag}
+  refresh: none
+
+#
+# pull image
+#
+- type: load
+  item-types:
+    - docker-image
+  name: Pull newers version of the image from the repository
+  behavior: interactive
+  cmd: docker image pull ${repo_tag}
+  refresh: self
+
+#
 # docker run
 #
 - type: terminal
