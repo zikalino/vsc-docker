@@ -12,32 +12,29 @@
 #
 # load image
 #
-#- type: load
-#  item-types:
-#    - docker-image-list
-#  name: Load image from tar file
-#  behavior: interactive
-#  additional-input:
-#    type: filename
-#    pattern: *.tar
-#    variable: filename
-#  cmd: docker image load --input ${filename}
-#  refresh: self
+- type: load
+  item-types:
+    - docker-image-list
+  name: Load image from tar file
+  behavior: interactive
+  cmd: xxx
+  template:
+    name: docker/docker_image_load.yaml
+  refresh: self
 
 #
 # import image
 #
-#- type: load
-#  item-types:
-#    - docker-image-list
-#  name: Import image from tar file
-#  behavior: interactive
-#  additional-input:
-#    type: filename
-#    pattern: *.tar
-#    variable: filename
-#  cmd: docker image import --input ${filename}
-#  refresh: self
+- type: load
+  item-types:
+    - docker-image-list
+  name: Import image from tar file
+  behavior: interactive
+  cmd: xxx
+  template:
+    name: docker/docker_image_import.yaml
+  refresh: self
+
 
 #
 # push image
