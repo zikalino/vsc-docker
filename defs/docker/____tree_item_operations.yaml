@@ -207,3 +207,17 @@
   behavior: interactive
   cmd: docker container export ${id} --output ${id}.tar
   refresh: none
+
+#
+# docker exec
+#
+- type: terminal
+  item-types:
+    - docker-container
+  name: Execute Command in Container
+  cmd: abc
+  template:
+    name: docker/docker_exec.yaml
+    parameters:
+      container_id: ${id}
+  refresh: none
