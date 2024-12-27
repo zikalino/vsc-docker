@@ -35,7 +35,6 @@
     name: docker/docker_image_import.yaml
   refresh: self
 
-
 #
 # docker run
 #
@@ -122,15 +121,43 @@
   refresh: none
 
 #
-# delete container
+# docker exec
 #
-- type: delete
+- type: run
   item-types:
     - docker-container
-  name: Delete
-  cmd: docker container remove ${id}
-  refresh: parent
+  name: Execute Command in Container
+  cmd: abc
+  template:
+    name: docker/docker_exec.yaml
+    parameters:
+      container_id: ${id}
+  refresh: none
 
+#
+# docker commit
+#
+- type: commit
+  item-types:
+    - docker-container
+  name: Create a new image from a container's changes
+  cmd: docker commit ${id}
+  template:
+    name: docker/docker_commit.yaml
+    parameters:
+      container_id: ${id}
+  refresh: none
+
+#
+# export container
+#
+- type: save
+  item-types:
+    - docker-container
+  name: Export to tar file
+  behavior: interactive
+  cmd: docker container export ${id} --output ${id}.tar
+  refresh: none
 
 #
 # start container
@@ -194,41 +221,15 @@
   cmd: docker container restart ${id}
   refresh: self
 
-#
-# export container
-#
-- type: save
-  item-types:
-    - docker-container
-  name: Export to tar file
-  behavior: interactive
-  cmd: docker container export ${id} --output ${id}.tar
-  refresh: none
+
+
 
 #
-# docker exec
+# delete container
 #
-- type: run
+- type: delete
   item-types:
     - docker-container
-  name: Execute Command in Container
-  cmd: abc
-  template:
-    name: docker/docker_exec.yaml
-    parameters:
-      container_id: ${id}
-  refresh: none
-
-#
-# docker commit
-#
-- type: commit
-  item-types:
-    - docker-container
-  name: Create a new image from a container's changes
-  cmd: docker commit ${id}
-  template:
-    name: docker/docker_commit.yaml
-    parameters:
-      container_id: ${id}
-  refresh: none
+  name: Delete
+  cmd: docker container remove ${id}
+  refresh: parent
