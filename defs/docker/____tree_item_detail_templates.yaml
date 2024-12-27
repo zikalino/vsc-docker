@@ -1,1 +1,13 @@
-[]
+- item-types:
+    - docker-container
+  definition:
+    type: section
+    title: Container
+    subitems:
+      - type: row
+        subitems:
+          - type: field
+            icon: icon-square-orange.png
+            color: black
+            label: 'State:'
+            value: '${state}'

@@ -11,4 +11,4 @@ operations:
   - $include: docker/____tree_item_operations.yaml
 
 detail-templates:
-  - $include: generic/____tree_item_detail_templates.yaml
+  - $include: docker/____tree_item_detail_templates.yaml

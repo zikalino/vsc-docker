@@ -169,8 +169,8 @@
   cmd: docker container start ${id}
   refresh: self
   when:
-    path: $.State
-    value: exited
+    path: $.state
+    value: stopped
 
 #
 # stop container
@@ -182,8 +182,8 @@
   cmd: docker container stop ${id}
   refresh: self
   when:
-    path: $.State
-    value: running
+    path: $.state
+    value: started
 
 #
 # pause container
@@ -195,8 +195,8 @@
   cmd: docker container pause ${id}
   refresh: self
   when:
-    path: $.State
-    value: running
+    path: $.state
+    value: started
 
 #
 # unpause container
@@ -208,7 +208,7 @@
   cmd: docker container unpause ${id}
   refresh: self
   when:
-    path: $.State
+    path: $.state
     value: paused
 
 #
@@ -219,10 +219,10 @@
     - docker-container
   name: Restart
   cmd: docker container restart ${id}
+  when:
+    path: $.state
+    value: started
   refresh: self
-
-
-
 
 #
 # delete container
