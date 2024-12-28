@@ -1,15 +1,4 @@
 #
-# prune images
-#
-- type: delete
-  item-types:
-    - docker-image-list
-  name: Prune dangling images
-  cmd: docker image prune
-  behavior: interactive
-  refresh: self
-
-#
 # load image
 #
 - type: load
@@ -17,7 +6,6 @@
     - docker-image-list
   name: Load image from tar file
   behavior: interactive
-  cmd: xxx
   template:
     name: docker/docker_image_load.yaml
   refresh: self
@@ -30,9 +18,19 @@
     - docker-image-list
   name: Import image from tar file
   behavior: interactive
-  cmd: xxx
   template:
     name: docker/docker_image_import.yaml
+  refresh: self
+
+#
+# prune images
+#
+- type: delete
+  item-types:
+    - docker-image-list
+  name: Prune dangling images
+  cmd: docker image prune
+  behavior: interactive
   refresh: self
 
 #
@@ -127,7 +125,7 @@
   item-types:
     - docker-container
   name: Execute Command in Container
-  cmd: abc
+  # cmd: abc
   template:
     name: docker/docker_exec.yaml
     parameters:

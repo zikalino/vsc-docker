@@ -7,7 +7,7 @@
       - type: row
         subitems:
           - type: field
-            icon: icon-state-${state}.png
+            icon: icon-state-${state}.svg
             color: black
             label: 'State:'
             value: '${state}'
