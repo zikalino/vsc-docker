@@ -125,12 +125,18 @@ function RefreshCurrentContext() {
   view.createDetailsView(view.treeGetCurrentId());
 }
 
-export function CloudExplorerRefresh(refresh_id: string) {
+export function CloudExplorerRefresh(refresh_id: string, details: boolean) {
 
   var id = (refresh_id !== "" ? refresh_id : view.treeGetCurrentId());
-  view.treeQueryItems(view, id);
 
-  // a tree item was selected, display details accordingly
-  // or try to query items accordingly
-  view.createDetailsView(id);
+  setTimeout(() => {
+    view.treeQueryItems(view, id);
+  }, 1000);
+  
+
+  if (details) {
+    // a tree item was selected, display details accordingly
+    // or try to query items accordingly
+    view.createDetailsView(id);
+  }
 }

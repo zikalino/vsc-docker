@@ -82,9 +82,9 @@ export async function loadYamlView(yml: any, refresh_id: string|null, parameters
     } else if (msg.command === 'refresh') {
       // XXX - need to send refresh event to explorer
       if ('id' in msg) {
-        CloudExplorerRefresh(msg['id']);
+        CloudExplorerRefresh(msg['id'], msg['details']);
       } else {
-        CloudExplorerRefresh(refresh_id ? refresh_id : "");
+        CloudExplorerRefresh(refresh_id ? refresh_id : "", msg['details']);
       }
     } else if (msg.command === 'button-clicked') {
       if (msg.id === 'close') {

@@ -49,7 +49,8 @@
     name: docker/docker_run.yaml
     parameters:
       image_id: ${id}
-  refresh: none
+  # this is the id of the container list
+  refresh: docker-container-list
 
 #
 # pull image
