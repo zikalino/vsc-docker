@@ -18,10 +18,3 @@ form:
     subitems:
       - $include: __docker_install_step.yaml
       - $include: __docker_start_step.yaml
-
-footer:
-  - type: footer
-    subitems:
-      - type: button
-        id: install_button
-        codicon: run-all

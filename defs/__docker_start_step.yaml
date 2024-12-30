@@ -9,5 +9,6 @@
 - type: 'action-row'
   platform: win32
   name: Start Docker Daemon
+  behavior: interactive-no-wait
   verify: docker info
-  install: C:\\Program Files\\Docker\\Docker\\Docker Desktop.exe
+  install: '& "C:\Program Files\Docker\Docker\Docker Desktop.exe"'
