@@ -34,32 +34,6 @@ export function activate (context: ExtensionContext) {
 // This method is called when your extension is deactivated
 export function deactivate () {}
 
-export async function displayMenu(submenu: any) {
-  var selected: string[] = [];
-  for (var i in submenu) {
-    selected.push(submenu[i].name);
-  }
-
-  const result = await vscode.window.showQuickPick(selected, {
-    placeHolder: 'Select...'
-  });
-
-  for (var i in submenu) {
-    if (submenu[i].name === result) {
-      if ('submenu' in submenu[i]) {
-        displayMenu(submenu[i].submenu);
-      } else {
-        // XXX - load yaml
-        var parameters: any = ('parameters' in submenu[i]) ? submenu[i]['parameters'] : {};
-
-        var loader = new helpers.DefinitionLoader(extensionContext.extensionPath, "defs/" + submenu[i].location);
-        let yml = loader.getYaml();
-
-        loadYamlView(yml, (('refresh-id' in submenu[i]) ? submenu[i]['refresh-id'] : null), parameters);
-      }
-    }
-  }
-}
 
 export async function loadYamlView(yml: any, refresh_id: string|null, parameters: any = null) {
 
