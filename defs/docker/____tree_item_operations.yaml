@@ -1,6 +1,17 @@
 #
 # load image
 #
+- type: create
+  item-types:
+    - docker-image-list
+  name: Search for Images
+  template:
+    name: docker/docker_image_search.yaml
+  refresh: self
+
+#
+# load image
+#
 - type: load
   item-types:
     - docker-image-list
