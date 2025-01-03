@@ -30,5 +30,5 @@ function displayDockerExplorer(extensionContext : vscode.ExtensionContext) {
     return;
   }
 
-  view = helpers.CreateExplorerView(extensionContext, "Docker Runner", "Docker Runner", vscode);
+  view = helpers.CreateExplorerView(extensionContext, "Docker Runner", "Docker Runner", vscode, "media/icon.png");
 }
