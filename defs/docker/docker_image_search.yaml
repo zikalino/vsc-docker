@@ -42,3 +42,4 @@ form:
         install: docker pull ${image}
         verify: echo running
         behavior: interactive
+        on-complete: close

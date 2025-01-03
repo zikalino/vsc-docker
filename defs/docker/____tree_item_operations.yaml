@@ -7,7 +7,7 @@
   name: Search for Images
   template:
     name: docker/docker_image_search.yaml
-  refresh: self
+  refresh: docker-image-list
 
 #
 # load image
