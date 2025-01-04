@@ -3,7 +3,7 @@
   items: []
   source:
     cmd: |
-      docker container list --format json
+      docker ps --all --format json
     parser: rows-json
     path-id: $[*].ID
     path-name: $[*].Names
