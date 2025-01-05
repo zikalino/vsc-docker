@@ -24,11 +24,14 @@ var view: helpers.GenericWebView|null = null;
 
 function displayDockerExplorer(extensionContext : vscode.ExtensionContext) {
 
+  // set helpers global context so we don't have to do it again
+  helpers.SetContext(vscode, extensionContext);
+
   // do not display more than one Cloud Explorer panel
   if (view !== null && !view.destroyed) {
     view.focus();
     return;
   }
 
-  view = helpers.CreateExplorerView(extensionContext, "Docker Runner", "Docker Runner", vscode, "media/icon.png");
+  view = helpers.CreateExplorerView("Docker Runner", "Docker Runner", "media/icon.png");
 }
