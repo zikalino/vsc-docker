@@ -22,8 +22,16 @@
   "contributes": {
     "commands": [
       {
-        "command": "vscode-cloud.displayDockerExplorer",
-        "title": "DockerRunner: Tree"
+        "command": "vscode-docker-runner.displayExplorer",
+        "title": "Docker Runner: Explorer"
+      },
+      {
+        "command": "vscode-docker-runner.displayDiscoverImages",
+        "title": "Docker Runner: Discover Images"
+      },
+      {
+        "command": "vscode-docker-runner.displayCreateContainers",
+        "title": "Docker Runner: Create Containers"
       }
     ]
   },

@@ -8,13 +8,31 @@ import * as helpers from '@zim.kalinowski/vscode-helper-toolkit';
 export function activate (context: ExtensionContext) {
 
   let disposable = vscode.commands.registerCommand(
-    'vscode-cloud.displayDockerExplorer',
+    'vscode-docker-runner.displayExplorer',
     () => {
       displayDockerExplorer(context);
     }
   );
 
   context.subscriptions.push(disposable);
+
+  disposable = vscode.commands.registerCommand(
+    'vscode-docker-runner.displayDiscoverImages',
+    () => {
+      displayDiscoverImages(context);
+    }
+  );
+
+  context.subscriptions.push(disposable);  
+
+  disposable = vscode.commands.registerCommand(
+    'vscode-docker-runner.displayCreateContainers',
+    () => {
+      displayCreateContainers(context);
+    }
+  );
+
+  context.subscriptions.push(disposable);  
 }
 
 // This method is called when your extension is deactivated
@@ -34,4 +52,26 @@ function displayDockerExplorer(extensionContext : vscode.ExtensionContext) {
   }
 
   view = helpers.CreateExplorerView("Docker Runner", "Docker Runner", "media/icon.png");
+}
+
+function displayDiscoverImages(extensionContext : vscode.ExtensionContext) {
+
+  // set helpers global context so we don't have to do it again
+  helpers.SetContext(vscode, extensionContext);
+
+  helpers.CreateFormView("docker/docker_image_import.yaml",
+                                view,
+                                "docker-image-list",
+                                null);
+}
+
+function displayCreateContainers(extensionContext : vscode.ExtensionContext) {
+
+  // set helpers global context so we don't have to do it again
+  helpers.SetContext(vscode, extensionContext);
+
+  helpers.CreateFormView("docker/docker_run.yaml",
+                                view,
+                                "docker-container-list",
+                                null);
 }
