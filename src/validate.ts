@@ -1,8 +1,8 @@
-import * as helpers from '@zim.kalinowski/vscode-helper-toolkit';
+import { DefinitionLoader } from './definitionLoader';
 
 console.log("Validation...");
 
-var loader = new helpers.DefinitionLoader("./", "defs/____tree.yaml", true);
+var loader = new DefinitionLoader("./", "defs/____tree.yaml");
 var templates = loader.getYaml();
 
 if (templates === null) {
@@ -12,7 +12,7 @@ if (templates === null) {
     console.log(errors[i]);
   }
 
-  console.log("** TOTAL VALIDATION ERRORS: " + errors.length);
+  console.log("** TOTAL ERRORS: " + errors.length);
   
   process.exit(1);
 }

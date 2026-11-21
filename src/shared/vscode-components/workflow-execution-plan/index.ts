@@ -1,0 +1,35 @@
+export type {
+  WorkflowActionCallback,
+  WorkflowComboQueryProvider,
+  WorkflowConfirmStepOptions,
+  WorkflowDynamicComboSelectionStepOptions,
+  WorkflowFailurePattern,
+  WorkflowFailurePatternDefinition,
+  WorkflowInputProvider,
+  WorkflowExecutionPlanDefinition,
+  WorkflowExecutionStepDefinition,
+  WorkflowMixedField,
+  WorkflowMixedInputStepOptions,
+  WorkflowMultiSelectionStepOptions,
+  WorkflowMultiTextEntryFieldOptions,
+  WorkflowMultiTextEntryStepOptions,
+  WorkflowRestCredentials,
+  WorkflowSelectionStepOptions,
+  WorkflowStepExecution,
+  WorkflowStepExecutionResult,
+  WorkflowStepExecutor,
+  WorkflowStepInputField,
+  WorkflowStepStatus,
+  WorkflowStepVisibilityCondition,
+  WorkflowTextEntryStepOptions,
+  WorkflowVariableMap,
+  WorkflowVariableValue
+} from './workflow-execution-plan';
+export {
+  executeFlow,
+  WebviewWorkflowInputProvider,
+  WorkflowExecutionContext,
+  WorkflowExecutionPlan,
+  WorkflowExecutionStep,
+  writeExecutionPlanMarkdown
+} from './workflow-execution-plan';

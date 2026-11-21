@@ -4,10 +4,11 @@
     namex:
       path: $.[0].Name
     state:
-      path: "$.[0].State.Status"
+      path: "$.State"
       map:
         "running": started
         "exited": stopped
+        "created": stopped
 - item-types:
     - docker-image
   fields:

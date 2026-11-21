@@ -2,10 +2,10 @@
   "name": "vsc-docker",
   "displayName": "Docker Runner",
   "description": "SmarterCode Docker Tools",
-  "version": "0.50.1",
+  "version": "0.51.1",
   "repository": "https://github.com/zikalino/vsc-docker",
   "publisher": "Zim",
-  "icon": "media/icon.png",
+  "icon": "media/docker-runner.png",
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -17,29 +17,228 @@
     "azure",
     "cli"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onView:dockerRunnerExplorer"
+  ],
   "main": "./out/extension.js",
   "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "docker-runner",
+          "title": "Docker Runner",
+          "icon": "media/docker-runner.png"
+        }
+      ]
+    },
+    "views": {
+      "docker-runner": [
+        {
+          "type": "tree",
+          "id": "dockerRunnerExplorer",
+          "name": "Docker Explorer"
+        }
+      ]
+    },
     "commands": [
       {
-        "command": "vscode-docker-runner.displayExplorer",
-        "title": "Docker Runner: Explorer"
+        "command": "vscode-docker-runner.refresh",
+        "title": "Docker Runner: Refresh",
+        "icon": "$(refresh)"
       },
       {
-        "command": "vscode-docker-runner.displayDiscoverImages",
-        "title": "Docker Runner: Discover Images"
+        "command": "vscode-docker-runner.viewItem",
+        "title": "View Details"
       },
       {
-        "command": "vscode-docker-runner.displayCreateContainers",
-        "title": "Docker Runner: Create Containers"
+        "command": "vscode-docker-runner.createContainer",
+        "title": "Create Container"
+      },
+      {
+        "command": "vscode-docker-runner.deleteItem",
+        "title": "Delete"
+      },
+      {
+        "command": "vscode-docker-runner.startContainer",
+        "title": "Start"
+      },
+      {
+        "command": "vscode-docker-runner.stopContainer",
+        "title": "Stop"
+      },
+      {
+        "command": "vscode-docker-runner.restartContainer",
+        "title": "Restart"
+      },
+      {
+        "command": "vscode-docker-runner.pauseContainer",
+        "title": "Pause"
+      },
+      {
+        "command": "vscode-docker-runner.unpauseContainer",
+        "title": "Unpause"
+      },
+      {
+        "command": "vscode-docker-runner.pullImage",
+        "title": "Pull Newer Version"
+      },
+      {
+        "command": "vscode-docker-runner.pushImage",
+        "title": "Push to Registry"
+      },
+      {
+        "command": "vscode-docker-runner.saveImage",
+        "title": "Save to tar File"
+      },
+      {
+        "command": "vscode-docker-runner.createDockerfile",
+        "title": "Create Dockerfile"
+      },
+      {
+        "command": "vscode-docker-runner.execContainer",
+        "title": "Execute Command"
+      },
+      {
+        "command": "vscode-docker-runner.commitContainer",
+        "title": "Commit (Create Image)"
+      },
+      {
+        "command": "vscode-docker-runner.attachTerminal",
+        "title": "Attach Terminal"
+      },
+      {
+        "command": "vscode-docker-runner.exportContainer",
+        "title": "Export to tar File"
+      },
+      {
+        "command": "vscode-docker-runner.pruneImages",
+        "title": "Docker Runner: Prune Dangling Images"
+      },
+      {
+        "command": "vscode-docker-runner.pruneContainers",
+        "title": "Docker Runner: Prune Stopped Containers"
+      },
+      {
+        "command": "vscode-docker-runner.searchImages",
+        "title": "Docker Runner: Search Images"
+      },
+      {
+        "command": "vscode-docker-runner.loadImage",
+        "title": "Docker Runner: Load Image (from save tar)"
+      },
+      {
+        "command": "vscode-docker-runner.importImage",
+        "title": "Docker Runner: Import Image (from filesystem tar)"
+      },
+      {
+        "command": "vscode-docker-runner.createDockerfileFromContainer",
+        "title": "Create Dockerfile from Changes"
+      },
+      {
+        "command": "vscode-docker-runner.createDockerfileFromContainerId",
+        "title": "Create Dockerfile from Changes (by ID)"
+      },
+      {
+        "command": "vscode-docker-runner.browseContainerFilesystem",
+        "title": "Browse Filesystem"
+      },
+      {
+        "command": "vscode-docker-runner.openImageTable",
+        "title": "Docker Runner: Images - Table View"
+      },
+      {
+        "command": "vscode-docker-runner.openContainerTable",
+        "title": "Docker Runner: Containers - Table View"
+      },
+      {
+        "command": "vscode-docker-runner.showContextMenu",
+        "title": "Actions",
+        "icon": "$(ellipsis)"
+      },
+      {
+        "command": "vscode-docker-runner.configureTerminal",
+        "title": "Docker Runner: Terminal"
       }
-    ]
+    ],
+    "menus": {
+      "commandPalette": [
+        { "command": "vscode-docker-runner.viewItem", "when": "false" },
+        { "command": "vscode-docker-runner.createContainer", "when": "false" },
+        { "command": "vscode-docker-runner.deleteItem", "when": "false" },
+        { "command": "vscode-docker-runner.pullImage", "when": "false" },
+        { "command": "vscode-docker-runner.pushImage", "when": "false" },
+        { "command": "vscode-docker-runner.saveImage", "when": "false" },
+        { "command": "vscode-docker-runner.createDockerfile", "when": "false" },
+        { "command": "vscode-docker-runner.startContainer", "when": "false" },
+        { "command": "vscode-docker-runner.stopContainer", "when": "false" },
+        { "command": "vscode-docker-runner.restartContainer", "when": "false" },
+        { "command": "vscode-docker-runner.pauseContainer", "when": "false" },
+        { "command": "vscode-docker-runner.unpauseContainer", "when": "false" },
+        { "command": "vscode-docker-runner.attachTerminal", "when": "false" },
+        { "command": "vscode-docker-runner.execContainer", "when": "false" },
+        { "command": "vscode-docker-runner.commitContainer", "when": "false" },
+        { "command": "vscode-docker-runner.exportContainer", "when": "false" },
+        { "command": "vscode-docker-runner.createDockerfileFromContainer", "when": "false" },
+        { "command": "vscode-docker-runner.createDockerfileFromContainerId", "when": "false" },
+        { "command": "vscode-docker-runner.browseContainerFilesystem", "when": "false" },
+        { "command": "vscode-docker-runner.showContextMenu", "when": "false" }
+      ],
+      "view/title": [
+        {
+          "command": "vscode-docker-runner.refresh",
+          "when": "view == dockerRunnerExplorer",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "vscode-docker-runner.showContextMenu",
+          "when": "view == dockerRunnerExplorer && viewItem == docker-image",
+          "group": "inline@1"
+        },
+        {
+          "command": "vscode-docker-runner.showContextMenu",
+          "when": "view == dockerRunnerExplorer && viewItem == docker-container",
+          "group": "inline@1"
+        },
+        {
+          "command": "vscode-docker-runner.showContextMenu",
+          "when": "view == dockerRunnerExplorer && viewItem == docker-image-list",
+          "group": "inline@1"
+        },
+        {
+          "command": "vscode-docker-runner.showContextMenu",
+          "when": "view == dockerRunnerExplorer && viewItem == docker-container-list",
+          "group": "inline@1"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Docker Runner",
+      "properties": {
+        "docker-runner.executionMode": {
+          "type": "string",
+          "default": "some",
+          "enum": [
+            "none",
+            "some",
+            "all"
+          ],
+          "enumDescriptions": [
+            "Run all commands in background (no terminal window). Fastest and quietest.",
+            "Run user-facing operations (start, stop, pull, push, etc.) in the Docker Runner terminal. Data queries stay in background.",
+            "Run every operation in the Docker Runner terminal for full visibility."
+          ],
+          "description": "Controls which Docker commands execute in a visible VS Code terminal vs silently in the background."
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
     "compile": "node ./esbuild.js",
     "validate": "node ./out/validate.js",
-    "package": "NODE_ENV=production node ./esbuild.js",
+    "package": "node ./esbuild.js --production",
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
@@ -64,8 +263,6 @@
     "@apidevtools/swagger-parser": "^10.1.0",
     "@vscode/codicons": "0.0.20",
     "@vscode/webview-ui-toolkit": "^1.4.0",
-    "@zim.kalinowski/vscode-helper-toolkit": "^0.1.6",
-    "jsonpath-plus": "^9.0.0",
     "marked": "^12.0.1",
     "yaml": "^2.3.4"
   }
