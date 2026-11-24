@@ -6,24 +6,26 @@ import { runCreateContainerWorkflow, runCommitContainerWorkflow, runLoadImageWor
 import { resolveJsonPath } from './jsonPath';
 import { DockerTreeProvider, DockerTreeItem } from './treeProvider';
 import { DockerDetailPanel } from './detailWebview';
+import { DockerExplorerView } from './dockerExplorerView';
 import { openImageTable, refreshImageTable } from './tableViewImages';
 import { openContainerTable } from './tableViewContainers';
 import { openHubSearch } from './hubSearchTable';
-import { terminalChangedShellIntegration, terminalDidClose } from './terminal';
+import { attachContainerTerminal, terminalChangedShellIntegration, terminalDidClose } from './terminal';
 
 export function activate (context: ExtensionContext) {
 
   // -----------------------------------------------------------------------
-  // Sidebar tree view
+  // Sidebar view
   // -----------------------------------------------------------------------
 
   const treeProvider = new DockerTreeProvider(context.extensionPath);
+  const dockerView = new DockerExplorerView(context.extensionUri);
 
-  const treeView = vscode.window.createTreeView('dockerRunnerExplorer', {
-    treeDataProvider: treeProvider,
-    showCollapseAll: true,
-  });
-  context.subscriptions.push(treeView);
+  context.subscriptions.push(
+    vscode.window.registerWebviewViewProvider(DockerExplorerView.viewType, dockerView, {
+      webviewOptions: { retainContextWhenHidden: true },
+    }),
+  );
 
   // -----------------------------------------------------------------------
   // Terminal shell integration — routes command execution to "Docker Runner"
@@ -46,29 +48,12 @@ export function activate (context: ExtensionContext) {
 
   const detailPanel = DockerDetailPanel.getInstance(context.extensionPath);
 
-  treeView.onDidChangeSelection(async (e) => {
-    if (e.selection.length === 0) { return; }
-    const item = e.selection[0];
-
-    // Folder-level items open table views
-    if (item.data.type === 'docker-image-list') {
-      openImageTable(context.extensionPath);
-      return;
-    }
-    if (item.data.type === 'docker-container-list') {
-      openContainerTable(context.extensionPath);
-      return;
-    }
-
-    showItemDetail(treeProvider, detailPanel, item);
-  });
-
   // -----------------------------------------------------------------------
   // Refresh
   // -----------------------------------------------------------------------
 
   registerCommand(context, 'vscode-docker-runner.refresh', () => {
-    treeProvider.refresh();
+    dockerView.refresh();
   });
 
   // -----------------------------------------------------------------------
@@ -352,12 +337,7 @@ export function activate (context: ExtensionContext) {
 
   registerCommand(context, 'vscode-docker-runner.attachContainerTerminal', (containerId?: string) => {
     if (!containerId) { return; }
-    const terminal = vscode.window.createTerminal({
-      name: `Container: ${containerId.substring(0, 12)}`,
-      shellPath: process.platform === 'win32' ? 'powershell' : '/bin/bash',
-      shellArgs: ['-c', `docker exec -it ${containerId} bash 2>/dev/null || docker exec -it ${containerId} sh`]
-    });
-    terminal.show();
+    attachContainerTerminal(containerId);
   });
 
   // -----------------------------------------------------------------------

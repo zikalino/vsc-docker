@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import * as cp from 'child_process';
 import type { DockerYamlItem } from './treeProvider';
+import { attachContainerTerminal } from './terminal';
 import { getManagedWebviewToolbarStyles, getManagedWebviewToolbarHtml, getManagedWebviewToolbarScript } from './shared/vscode-components/common-webviews/managed-webview';
 
 // ---------------------------------------------------------------------------
@@ -183,7 +184,7 @@ export class DockerDetailPanel {
       case 'pause':       cp.execSync(`docker container pause ${id}`); break;
       case 'unpause':     cp.execSync(`docker container unpause ${id}`); break;
       case 'attachTerminal':
-        vscode.window.createTerminal({ name: `Container ${id.substring(0, 12)}` }).sendText(`docker exec -it ${id} bash 2>/dev/null || docker exec -it ${id} sh`);
+        attachContainerTerminal(id);
         return;
       case 'execCommand': {
         const cmd = await vscode.window.showInputBox({ prompt: 'Command to execute', value: 'bash' });

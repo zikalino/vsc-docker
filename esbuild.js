@@ -33,6 +33,15 @@ const validateConfig = {
   loader: {".html": "text"}
 };
 
+const webviewConfig = {
+  ...baseConfig,
+  platform: "browser",
+  format: "iife",
+  target: "es2022",
+  entryPoints: ["./media-src/dockerPanel.ts"],
+  outfile: "./media/dockerPanel.js"
+};
+
 const watchConfig = {
   watch: true,
 };
@@ -40,11 +49,23 @@ const watchConfig = {
 (async () => {
   const args = process.argv.slice(2);
   try {
-    if (args.includes("--watch")) {
+    if (args.includes("--watch-webview")) {
+      // Only the webview bundle: `tsc -watch` owns out/extension.js.
+      console.log("[watch] webview build started");
+      await build({
+        ...webviewConfig,
+        ...watchConfig,
+      });
+      console.log("[watch] webview build finished");
+    } else if (args.includes("--watch")) {
       // Build and watch extension code
       console.log("[watch] build started");
       await build({
         ...extensionConfig,
+        ...watchConfig,
+      });
+      await build({
+        ...webviewConfig,
         ...watchConfig,
       });
       console.log("[watch] build finished");
@@ -52,6 +73,7 @@ const watchConfig = {
       // Build extension code
       await build(extensionConfig);
       await build(validateConfig);
+      await build(webviewConfig);
       fs.copyFileSync(
         path.resolve(__dirname, "src/shared/vscode-components/workflow-execution-plan/workflow-execution-plan.html"),
         path.resolve(__dirname, "out/workflow-execution-plan.html")

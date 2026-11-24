@@ -122,6 +122,10 @@ dist
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
 
+# Webview bundle (built by `npm run compile` / `npm run package`)
+media/dockerPanel.js
+media/*.map
+
 # yarn v2
 .yarn/cache
 .yarn/unplugged

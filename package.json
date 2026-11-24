@@ -34,7 +34,7 @@
     "views": {
       "docker-runner": [
         {
-          "type": "tree",
+          "type": "webview",
           "id": "dockerRunnerExplorer",
           "name": "Docker Explorer"
         }
@@ -236,10 +236,12 @@
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
-    "compile": "node ./esbuild.js",
+    "copy-wasm": "node ./scripts/copy-wasm.js",
+    "compile": "node ./scripts/copy-wasm.js && node ./esbuild.js",
+    "typecheck": "tsc --noEmit -p . && tsc -p tsconfig.media.json",
     "validate": "node ./out/validate.js",
-    "package": "node ./esbuild.js --production",
-    "watch": "tsc -watch -p ./",
+    "package": "node ./scripts/copy-wasm.js && node ./esbuild.js --production",
+    "watch": "node ./scripts/watch.js",
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
     "test": "vscode-test"
